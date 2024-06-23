@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Api-gateway/Api-gateway.iml" filepath="$PROJECT_DIR$/Api-gateway/Api-gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/ConfigServer/ConfigServer.iml" filepath="$PROJECT_DIR$/ConfigServer/ConfigServer.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Highway Ticket Management System.iml" filepath="$PROJECT_DIR$/.idea/Highway Ticket Management System.iml" />
       <module fileurl="file://$PROJECT_DIR$/Service-Registry/Service-Registry.iml" filepath="$PROJECT_DIR$/Service-Registry/Service-Registry.iml" />
