@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Api-gateway" />
         <module name="ConfigServer" />
+        <module name="vehicle-service" />
         <module name="Service-Registry" />
         <module name="ticket-service" />
       </profile>
@@ -18,6 +19,7 @@
       <module name="ConfigServer" target="17" />
       <module name="Service-Registry" target="17" />
       <module name="ticket-service" target="17" />
+      <module name="vehicle-service" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -26,6 +28,7 @@
       <module name="ConfigServer" options="-parameters" />
       <module name="Service-Registry" options="-parameters" />
       <module name="ticket-service" options="-parameters" />
+      <module name="vehicle-service" options="-parameters" />
     </option>
   </component>
 </project>
