@@ -8,9 +8,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Api-gateway" />
-        <module name="ConfigServer" />
         <module name="payment-service" />
         <module name="vehicle-service" />
+        <module name="ConfigServer" />
+        <module name="user-service" />
         <module name="Service-Registry" />
         <module name="ticket-service" />
       </profile>
@@ -21,6 +22,7 @@
       <module name="payment-service" target="17" />
       <module name="Service-Registry" target="17" />
       <module name="ticket-service" target="17" />
+      <module name="user-service" target="17" />
       <module name="vehicle-service" target="17" />
     </bytecodeTargetLevel>
   </component>
@@ -31,6 +33,7 @@
       <module name="Service-Registry" options="-parameters" />
       <module name="payment-service" options="-parameters" />
       <module name="ticket-service" options="-parameters" />
+      <module name="user-service" options="-parameters" />
       <module name="vehicle-service" options="-parameters" />
     </option>
   </component>
