@@ -28,4 +28,9 @@ spring:
           - id: payment-service
             uri: lb://payment-service
             predicates:
-              - Path=/api/v1/payment/**
+              - Path=/api/v1/payment/**  //Define routing configurations for each service
+
+
+
+
+
