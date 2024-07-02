@@ -26,7 +26,7 @@ public class UserServiceIMPL implements UserService {
 
     @Override
     public List<UserDTO> getAllUser() {
-        return null;
+        return List.of();
     }
 
     @Override
