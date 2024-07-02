@@ -11,6 +11,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/user")
 @RequiredArgsConstructor
@@ -37,6 +39,19 @@ public class UserController {
             logger.error("Error saving User: ", exception);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Internal server error: | User saved Unsuccessfully.Please try again later.\nMore Details\n" + exception);
+        }
+    }
+
+    @GetMapping
+    public ResponseEntity<?> getAllUsers() {
+        logger.info("Getting all Users");
+        try {
+            List<UserDTO> userDTOList = userService.getAllUser();
+            return ResponseEntity.ok(userDTOList);
+        } catch (Exception exception) {
+            logger.error("Error Getting all Users: ", exception);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Internal server error | Unable to get Users.\nMore Details\n" + exception);
         }
     }
 }
