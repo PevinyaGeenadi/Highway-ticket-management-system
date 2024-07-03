@@ -69,4 +69,8 @@ public class TicketServiceIMPL implements TicketService {
     public List<TicketDTO> getTicketByVehicleId(String vehicleId) {
         return mapping.toTicketDTOList(ticketRepo.findByVehicleId(vehicleId));
     }
+    @Override
+    public boolean isTicketExists(String ticketId) {
+        return ticketRepo.existsById(ticketId);
+    }
 }

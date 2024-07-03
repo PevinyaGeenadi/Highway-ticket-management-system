@@ -1,6 +1,6 @@
 package lk.ijse.paymentservice.util;
-import lk.ijse.ticketservice.dto.TicketDTO;
-import lk.ijse.ticketservice.entity.TicketEntity;
+import lk.ijse.paymentservice.dto.PaymentDTO;
+import lk.ijse.paymentservice.entity.PaymentEntity;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 

@@ -24,9 +24,8 @@ public class TicketController {
     private final VehicleServiceClient vehicleServiceClient;
     @GetMapping("/checkTicket")
     public String userCheck(){
-        return "Ticket Check Successful!";
+        return "Ticket Service is up and running !";
     }
-
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> saveTicket(@Validated @RequestBody TicketDTO ticketDTO, BindingResult bindingResult){
@@ -110,6 +109,17 @@ public class TicketController {
             logger.error("Error updating Ticket by ID: {}", ticketId, exception);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Internal server error | Ticket updating Unsuccessfully.\nMore Details\n" + exception);
+        }
+    }
+    @GetMapping("/ticketExists/{ticketId}")
+    public ResponseEntity<?> isTicketExists(@PathVariable String ticketId){
+        logger.info("Checking Ticket exists by ID: {}", ticketId);
+        try{
+            return ResponseEntity.ok(ticketService.isTicketExists(ticketId));
+        }catch(Exception exception){
+            logger.error("Error checking Ticket exists by ID: {}", ticketId, exception);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Internal server error | Ticket checking Unsuccessfully.\nMore Details\n" + exception);
         }
     }
 

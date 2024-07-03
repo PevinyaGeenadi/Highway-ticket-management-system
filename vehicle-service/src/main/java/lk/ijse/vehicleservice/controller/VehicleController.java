@@ -29,7 +29,7 @@ public class VehicleController {
 
     @GetMapping("/health")
     public String healthTest() {
-        return "Vehicle Health Test";
+        return "Vehicle Service is up and running !";
     }
 
     @ResponseStatus(HttpStatus.CREATED)
