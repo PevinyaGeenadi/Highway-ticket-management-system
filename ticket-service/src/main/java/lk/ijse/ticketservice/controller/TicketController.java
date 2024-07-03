@@ -3,6 +3,7 @@ package lk.ijse.ticketservice.controller;
 import lk.ijse.ticketservice.dto.TicketDTO;
 import lk.ijse.ticketservice.service.TicketService;
 import lk.ijse.ticketservice.service.UserServiceClient;
+import lk.ijse.ticketservice.service.VehicleServiceClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import lombok.RequiredArgsConstructor;
@@ -46,6 +47,69 @@ public class TicketController {
             logger.error("Error saving Ticket: ", exception);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Internal server error | Ticket saved Unsuccessfully.\nMore Details\n" + exception);
+        }
+    }
+    @GetMapping
+    public ResponseEntity<?> getAllTickets(){
+        logger.info("Fetching all Tickets");
+        try{
+            return ResponseEntity.ok(ticketService.getAllTicket());
+        }catch(Exception exception){
+            logger.error("Error fetching Tickets: ", exception);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Internal server error | Tickets fetching Unsuccessfully.\nMore Details\n" + exception);
+        }
+    }
+
+    @GetMapping("/{ticketId}")
+    public ResponseEntity<?> getTicketById(@PathVariable String ticketId){
+        logger.info("Fetching Ticket by ID: {}", ticketId);
+        try{
+            TicketDTO ticketDTO = ticketService.getSelectedTicket(ticketId);
+            if(ticketDTO == null){
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Ticket not found with ID: " + ticketId);
+            }
+            return ResponseEntity.ok(ticketDTO);
+        }catch(Exception exception){
+            logger.error("Error fetching Ticket by ID: {}", ticketId, exception);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Internal server error | Ticket fetching Unsuccessfully.\nMore Details\n" + exception);
+        }
+    }
+
+    @DeleteMapping("/{ticketId}")
+    public ResponseEntity<?> deleteTicket(@PathVariable String ticketId){
+        logger.info("Deleting Ticket by ID: {}", ticketId);
+        try{
+            ticketService.deleteTicket(ticketId);
+            return ResponseEntity.ok("Ticket deleted successfully");
+        }catch(Exception exception){
+            logger.error("Error deleting Ticket by ID: {}", ticketId, exception);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Internal server error | Ticket deletion Unsuccessfully.\nMore Details\n" + exception);
+        }
+    }
+
+
+    @PutMapping("/{ticketId}")
+    public ResponseEntity<?> updateTicket(@PathVariable String ticketId, @Validated @RequestBody TicketDTO ticketDTO, BindingResult bindingResult){
+        logger.info("Updating Ticket by ID: {}", ticketId);
+        if(bindingResult.hasErrors()){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(bindingResult.getFieldErrors().get(0).getDefaultMessage());
+        }
+        try{
+            if(!userServiceClient.isUserExists(ticketDTO.getUserId())){
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User not found with ID: " + ticketDTO.getUserId());
+            }
+            if(!vehicleServiceClient.isVehicleExists(ticketDTO.getVehicleId())){
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Vehicle not found with ID: " + ticketDTO.getVehicleId());
+            }
+            ticketService.updateTicket(ticketId, ticketDTO);
+            return ResponseEntity.ok("Ticket updated successfully");
+        }catch(Exception exception){
+            logger.error("Error updating Ticket by ID: {}", ticketId, exception);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Internal server error | Ticket updating Unsuccessfully.\nMore Details\n" + exception);
         }
     }
 
