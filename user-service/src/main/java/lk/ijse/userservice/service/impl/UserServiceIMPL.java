@@ -60,4 +60,9 @@ public class UserServiceIMPL implements UserService {
             userRepo.deleteById(userId);
         } else throw new NotFoundException("User not found" + userId);
     }
+
+    @Override
+    public boolean isUserExists(String userId) {
+        return userRepo.existsById(userId);
+    }
 }

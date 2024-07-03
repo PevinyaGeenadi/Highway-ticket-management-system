@@ -96,4 +96,17 @@ public class UserController {
                     .body("Internal server error | Unable to delete user.\nMore Details\n" + exception);
         }
     }
+    @GetMapping("/userExists/{userId}")
+    public ResponseEntity<?> isUserExists(@PathVariable String userId) {
+        logger.info("Checking user existence with ID: {}", userId);
+        try {
+            boolean isUserExists = userService.isUserExists(userId);
+            logger.info("User Exists: {}", isUserExists);
+            return ResponseEntity.ok(isUserExists);
+        } catch (Exception exception) {
+            logger.error("Error checking user existence: ", exception);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Internal server error | Unable to check user existence.\nMore Details\n" + exception);
+        }
+    }
 }
