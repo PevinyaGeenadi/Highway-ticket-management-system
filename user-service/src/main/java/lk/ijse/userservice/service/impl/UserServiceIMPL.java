@@ -6,6 +6,7 @@ import lk.ijse.userservice.dto.UserDTO;
 import lk.ijse.userservice.entity.UserEntity;
 import lk.ijse.userservice.service.UserService;
 import lk.ijse.userservice.util.Mapping;
+import lk.ijse.userservice.util.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +28,10 @@ public class UserServiceIMPL implements UserService {
 
     @Override
     public UserDTO getSelectedUser(String userId) {
-        return mapping.toUserDto(userRepo.findById(userId).orElse(null));
+        UserEntity userEntity = userRepo.findById(userId)
+                .orElseThrow(() -> new NotFoundException("User not found" + userId));
+
+        return mapping.toUserDto(userEntity);
     }
 
     @Override
@@ -37,7 +41,8 @@ public class UserServiceIMPL implements UserService {
 
     @Override
     public void updateUser(String userId, UserDTO userDTO) {
-        UserEntity userEntity = userRepo.findById(userId).orElse(null);
+        UserEntity userEntity = userRepo.findById(userId)
+                .orElseThrow(() -> new NotFoundException("User not found" + userId));
 
         if (userEntity != null) {
             userEntity.setFirstName(userDTO.getFirstName());
@@ -51,6 +56,8 @@ public class UserServiceIMPL implements UserService {
 
     @Override
     public void deleteUser(String userId) {
-        userRepo.deleteById(userId);
+        if (userRepo.existsById(userId)){
+            userRepo.deleteById(userId);
+        } else throw new NotFoundException("User not found" + userId);
     }
 }
