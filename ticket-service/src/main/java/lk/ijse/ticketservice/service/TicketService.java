@@ -9,4 +9,5 @@ public interface TicketService {
     List<TicketDTO> getAllTicket();
     void updateTicket(String ticketId,TicketDTO ticketDTO);
     List<TicketDTO> getTicketByUserId(String userId);
+    List<TicketDTO> getTicketByVehicleId(String vehicleId);
 }

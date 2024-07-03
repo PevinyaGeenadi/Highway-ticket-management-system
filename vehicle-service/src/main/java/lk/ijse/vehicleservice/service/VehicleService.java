@@ -12,4 +12,5 @@ public interface VehicleService {
     void updateVehicle(String vehicleId,VehicleDTO vehicleDTO);
 
     List<VehicleDTO> getVehicleByUserId(String userId);
+    boolean isVehicleExists(String vehicleId);
 }

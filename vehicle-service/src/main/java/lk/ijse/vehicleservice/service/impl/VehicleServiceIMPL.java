@@ -60,4 +60,9 @@ public class VehicleServiceIMPL implements VehicleService {
     public List<VehicleDTO> getVehicleByUserId(String userId) {
         return mapping.toVehicleDTOList(vehicleRepo.findByUserId(userId));
     }
+
+    @Override
+    public boolean isVehicleExists(String vehicleId) {
+        return vehicleRepo.existsById(vehicleId);
+    }
 }
