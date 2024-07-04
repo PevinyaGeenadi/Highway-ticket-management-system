@@ -5,5 +5,513 @@
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "31529854"
 	},
-	"item": []
+	"item": [
+		{
+			"name": "User Service",
+			"item": [
+				{
+					"name": "User health check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/user/health",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"\",\r\n  \"firstName\": \"{{$randomFirstName}}\",\r\n  \"lastName\": \"{{$randomLastName}}\",\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"password\": \"{{$randomPassword}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user"
+							]
+						},
+						"description": "\nThis endpoint allows you to create a new user by sending a POST request to {{baseUrl}}/user. The request should include the user details such as id, firstName, lastName, email, and password in the request body.\n\n### Request Body\n- `id` (string): The unique identifier for the user.\n- `firstName` (string): The first name of the user.\n- `lastName` (string): The last name of the user.\n- `email` (string): The email address of the user.\n- `password` (string): The password for the user account.\n\n### Response\nUpon successful creation of the user, the endpoint returns a 201 status code along with a JSON object containing the details of the newly created user, including the id, firstName, lastName, email, and password.\n\nExample:\n```json\n{\n  \"id\": \"user_id\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"email\": \"johndoe@example.com\",\n  \"password\": \"********\"\n}\n```\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/user/U0010",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"U0010"
+							]
+						},
+						"description": "## GET /user/U0010\n\nThis endpoint retrieves user information for the user with ID U0010.\n\n### Request\n\nNo request body is required for this endpoint.\n\n### Response\n\nThe response will be in JSON format and will contain the following fields:\n\n- `id` (string): The unique identifier of the user.\n    \n- `firstName` (string): The first name of the user.\n    \n- `lastName` (string): The last name of the user.\n    \n- `email` (string): The email address of the user.\n    \n- `password` (string): The password of the user.\n    \n\n#### JSON Schema\n\n``` json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"id\": { \"type\": \"string\" },\n    \"firstName\": { \"type\": \"string\" },\n    \"lastName\": { \"type\": \"string\" },\n    \"email\": { \"type\": \"string\" },\n    \"password\": { \"type\": \"string\" }\n  }\n}\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/user",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user"
+							]
+						},
+						"description": "This endpoint makes an HTTP GET request to retrieve user information from the server. The response returned is a JSON array with objects containing the user details including id, firstName, lastName, email, and password.\n\n``` json\n[\n  {\n    \"id\": \"\",\n    \"firstName\": \"\",\n    \"lastName\": \"\",\n    \"email\": \"\",\n    \"password\": \"\"\n  }\n]\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"\",\r\n  \"firstName\": \"{{$randomFirstName}}\",\r\n  \"lastName\": \"{{$randomLastName}}\",\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"password\": \"{{$randomPassword}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/U0010",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"U0010"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/user/U0012",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"U0012"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Vehicle Service",
+			"item": [
+				{
+					"name": "vehicle health check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vehicle/health",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vehicle",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vehicle Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"vehicleId\": \"V123\",\r\n    \"licensePlate\": \"ABC123\",\r\n    \"brand\": \"Toyota\",\r\n    \"model\": \"Corolla\",\r\n    \"userId\": \"U0009\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/vehicle",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vehicle"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Vehicle",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vehicle/V0009",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vehicle",
+								"V0009"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vehicle",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vehicle"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vehicle Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vehicle/V0010",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vehicle",
+								"V0010"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vehicle Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"vehicleId\": \"\",\r\n    \"licensePlate\": \"ABC123\",\r\n    \"brand\": \"Toyota\",\r\n    \"model\": \"Corolla@\",\r\n    \"userId\": \"U0021\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/vehicle/V0009",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vehicle",
+								"V0009"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ticket Service",
+			"item": [
+				{
+					"name": "Ticker Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ticketId\": \"\",\r\n  \"ticketIssueDate\": \"2023-12-20\",\r\n  \"ticketStatus\": \"not Paid\",\r\n  \"vehicleId\": \"V0001\",\r\n  \"userId\": \"U0001\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/ticket",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ticket"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Ticket",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ticket",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ticket"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Ticket",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ticket/T0001",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ticket",
+								"T0001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Ticket",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ticketId\": \"\",\r\n  \"ticketIssueDate\": \"2023-12-02\",\r\n  \"ticketStatus\": \"Paid\",\r\n  \"vehicleId\": \"V0002\",\r\n  \"userId\": \"U0002\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/ticket/T0002",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ticket",
+								"T0002"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ticket/T0002",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ticket",
+								"T0002"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payment Service",
+			"item": [
+				{
+					"name": "Payment Health check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/payment/checkPayment",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"payment",
+								"checkPayment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Payment Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"paymentId\": \"\",\r\n  \"amount\": 1,\r\n  \"paymentDate\": \"2023-12-20\",\r\n  \"paymentStatus\": \"cancel\",\r\n  \"ticketId\": \"T0001\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/payment",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"payment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Payment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/payment",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"payment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Payment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/payment/P0006",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"payment",
+								"P0006"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Payment",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"paymentId\": \"\",\r\n  \"amount\": 12,\r\n  \"paymentDate\": \"2023-12-21\",\r\n  \"paymentStatus\": \"successfull\",\r\n  \"ticketId\": \"T0002\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/payment/P0006",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"payment",
+								"P0006"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Payment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/payment/P0006",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"payment",
+								"P0006"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080/api/v1"
+		}
+	]
 }
